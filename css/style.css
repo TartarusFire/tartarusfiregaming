@@ -1,15 +1,31 @@
 #leftWall {
-  background: red; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, red , yellow); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, red, yellow); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, red, yellow); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, red , yellow); /* Standard syntax */
+	position: absolute;
+	/*left:0%;*/
+	width:5%;
+	height:100%;
+background: red; /* For browsers that do not support gradients */
+background: -webkit-linear-gradient(left, red , yellow); /* For Safari 5.1 to 6.0 */
+background: -o-linear-gradient(right, red, yellow); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(right, red, yellow); /* For Firefox 3.6 to 15 */
+background: linear-gradient(to right, red , yellow); /* Standard syntax */
 }
 
 #rightWall {
-  background: red; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(right, red , yellow); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(left, red, yellow); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(left, red, yellow); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to left, red , yellow); /* Standard syntax */
+	position: absolute;
+	left:95%;
+	width:5%;
+	height:100%;
+background: red; /* For browsers that do not support gradients */
+background: -webkit-linear-gradient(right, red , yellow); /* For Safari 5.1 to 6.0 */
+background: -o-linear-gradient(left, red, yellow); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(left, red, yellow); /* For Firefox 3.6 to 15 */
+background: linear-gradient(to left, red , yellow); /* Standard syntax */
 }
+/*
+
+html,body,div,video{
+padding:0;
+margin:0;
+}
+
+*/
