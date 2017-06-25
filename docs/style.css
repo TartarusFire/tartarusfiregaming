@@ -1,0 +1,161 @@
+html,body,div{
+padding:0;
+margin:0;
+border:0;
+}
+body{
+	background-color:#FFF8DB;/*rgba(255,248,219,1);*/
+}
+#baseplate{
+	position:absolute;
+	left:10%;
+	background-color:#FFFDF8;/*book background*/
+	width:80%;
+	height:100%;
+}
+
+#leftWall {
+	position: absolute;
+	left:8%;/**/
+	width:5%;
+	height:100%;
+/*background: red; /* For browsers that do not support gradients */
+/*background: -webkit-linear-gradient(left, red , yellow); /* For Safari 5.1 to 6.0 */
+/*background: -o-linear-gradient(right, red, yellow); /* For Opera 11.1 to 12.0 */
+/*background: -moz-linear-gradient(right, red, yellow); /* For Firefox 3.6 to 15 */
+/*background: linear-gradient(to right, red , yellow); /* Standard syntax */
+}
+
+#rightWall {
+	position: absolute;
+	left:87%;
+	width:5%;
+	height:100%;
+/* background: red; /* For browsers that do not support gradients */
+/* background: -webkit-linear-gradient(right, red , yellow); /* For Safari 5.1 to 6.0 */
+/* background: -o-linear-gradient(left, red, yellow); /* For Opera 11.1 to 12.0 */
+/* background: -moz-linear-gradient(left, red, yellow); /* For Firefox 3.6 to 15 */
+/* background: linear-gradient(to left, red , yellow); /* Standard syntax */
+}
+
+#lineLeft{
+	position:absolute;
+	background-color:#EDDDAF;
+	left:10%;
+	width:1px;
+	height:100%;
+}
+#lineRight{
+	position:absolute;
+	background-color:#EDDDAF;
+	left:90%;
+	width:1px;
+	height:100%;
+}
+
+
+#rightWall {
+background: #FFF6D9; /* For browsers that do not support gradients */
+background: -webkit-linear-gradient(right, #FFF6D9,#F9E7B3,#FFFBF7); /* For Safari 5.1 to 6.0 */
+background: -o-linear-gradient(left, #FFF6D9,#F9E7B3,#FFFBF7); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(left, #FFF6D9,#F9E7B3,#FFFBF7); /* For Firefox 3.6 to 15 */
+background: linear-gradient(to left, #FFF6D9,#F9E7B3,#FFFBF7); /* Standard syntax */
+}
+#leftWall {
+  background: #FFF6D9; /* For browsers that do not support gradients */
+  /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(left,#FFF6D9,#F9E7B3,#FFFBF7);
+  /* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(left,#FFF6D9,#F9E7B3,#FFFBF7);
+  /* For Fx 3.6 to 15 */
+  background: -moz-linear-gradient(left,#FFF6D9,#F9E7B3,#FFFBF7);
+  /* Standard syntax */
+  background: linear-gradient(to right, #FFF6D9,#F9E7B3,#FFFBF7);
+}
+
+
+#gradLeft{
+	position:absolute;
+	left:10%;
+	width:5%;
+	height:100%;
+}
+#gradRight{
+	position:absolute;
+	left:85%;
+	width:5%;
+	height:100%;
+}
+
+#gradLeft {
+background: #FFFDF9; /* For browsers that do not support gradients */
+background: -webkit-linear-gradient(right, #FFFDF9,#FEF7E1); /* For Safari 5.1 to 6.0 */
+background: -o-linear-gradient(left, #FFFDF9,#FEF7E1); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(left, #FFFDF9,#FEF7E1); /* For Firefox 3.6 to 15 */
+background: linear-gradient(to left, #FFFDF9,#FEF7E1); /* Standard syntax */
+}
+#gradRight {
+  background: #FFFDF9; /* For browsers that do not support gradients */
+  /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(left,#FFFDF9,#FEF7E1);
+  /* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(left,#FFFDF9,#FEF7E1);
+  /* For Fx 3.6 to 15 */
+  background: -moz-linear-gradient(left,#FFFDF9,#FEF7E1);
+  /* Standard syntax */
+  background: linear-gradient(to right, #FFFDF9,#FEF7E1);
+}
+
+
+
+
+
+
+
+/**************************/
+/* Main Themeing Elements */
+/**************************/
+
+.transparent{
+	background-color:transparent;
+	
+	background-color:rgba(0,0,0,0);/*self rgba color*/
+	/*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";       /* IE 8 */
+	/*filter: alpha(opacity=00);  /* IE 5-7 */
+	/*-moz-opacity: 0.0;          /* Netscape */
+	/*-khtml-opacity: 0.0;        /* Safari 1.x */
+	/*opacity: 0.0;               /* Good browsers */
+	/*background-color:transparent;
+	//background-color:rgba(0,0,0,0);
+	
+	can be applied to images \/
+	
+	opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+	
+	/**/
+}
+
+#backplate{
+	margin-left:2%;
+	margin-right:2%;
+	position:absolute;
+	left:10%;
+	width:80%;
+	height:100%;
+}
+
+a{
+	/*background-color:#e55600;*/
+	color:#e58e5a;
+}
+
+a:visited{
+	/*background-color:#e58e5a;*/
+	color:#e58e5a;
+}
+
+a:hover{
+	background-color:#e55600;
+	color:#FFFFFF;
+}
