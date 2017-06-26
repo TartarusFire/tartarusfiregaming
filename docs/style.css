@@ -147,6 +147,20 @@ background: linear-gradient(to left, #FFFDF9,#FEF7E1); /* Standard syntax */
                                   supported by Chrome and Opera */
 }
 
+.select {
+  -webkit-touch-callout: all; /* iOS Safari */
+    -webkit-user-select: all; /* Safari */
+     -khtml-user-select: all; /* Konqueror HTML */
+       -moz-user-select: all; /* Firefox */
+        -ms-user-select: all; /* Internet Explorer/Edge */
+            user-select: all; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.small {
+	font-size:12px;
+}
+
 #backplate{
 	margin-left:2%;
 	margin-right:2%;
@@ -167,9 +181,15 @@ a:visited{
 	color:#e58e5a;
 }
 
-a:hover{
+a:hover, .link{
 	background-color:#e55600;
 	color:#FFFFFF;
+}
+
+.link:hover{
+	background-color:transparent;
+	background-color:rgba(0,0,0,0);
+	color:#e55600;
 }
 
 #contentWrapper{
@@ -196,14 +216,14 @@ a:hover{
 	top:8%;
 	/*position:relative;*/
 	position:inline;
-	width:10%;
+	width:15%;
 	height:100%;
 	overflow:auto;
 	color:e58e5a;
 	
 	/*border-top:2px solid #e58e5a;*/
 	/*margin: 1% 1% 1% 1%;*/
-	padding: 1% 1% 1% 1%;
+	/*padding: 1% 1% 1% 1%;*/
 	font-size:18px;
 	color:#e58e5a;
 }
@@ -219,8 +239,8 @@ a:hover{
 }
 
 #contentTabs>div{
-	width:100%;
-	height:10%;
+	width:95%;
+	/*height:10%;
 	/*display:block;*/
 	border:1px solid #e58e5a;
 	/*float:left;*/
@@ -237,4 +257,20 @@ a:hover{
 	width:85%;
 	height:100%;
 	/*float:left;*/
+}
+
+#contentFrame{
+	width:100%;
+	height:68vh;
+	padding:0;
+	border:0;
+	margin:0;
+}
+
+#float{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0%;
+	left:0%;
 }
