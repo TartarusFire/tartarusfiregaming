@@ -5,6 +5,7 @@ border:0;
 }
 body{
 	background-color:#FFF8DB;/*rgba(255,248,219,1);*/
+	font-family: Georgia,Times New Roman,serif;
 }
 #baseplate{
 	position:absolute;
@@ -136,14 +137,25 @@ background: linear-gradient(to left, #FFFDF9,#FEF7E1); /* Standard syntax */
 	/**/
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 #backplate{
 	margin-left:2%;
 	margin-right:2%;
 	position:absolute;
 	left:10%;
-	width:80%;
+	width:76%;
 	height:100%;
 }
+
 
 a{
 	/*background-color:#e55600;*/
@@ -158,4 +170,71 @@ a:visited{
 a:hover{
 	background-color:#e55600;
 	color:#FFFFFF;
+}
+
+#contentWrapper{
+	left:10%;
+	height:80%;
+	width:100%;
+}
+
+/*https://stackoverflow.com/questions/11063325/align-html-elements-horizontally-in-a-div*/
+#contentWrapper >div{
+	text-align:center;
+	display:inline-block;
+	float:left;
+}
+
+#siteTitle{
+	top:0%;
+	left:10%;
+	height:5%;
+	margin-bottom:3%;
+}
+
+#navigation{
+	top:8%;
+	/*position:relative;*/
+	position:inline;
+	width:10%;
+	height:100%;
+	overflow:auto;
+	color:e58e5a;
+	
+	/*border-top:2px solid #e58e5a;*/
+	/*margin: 1% 1% 1% 1%;*/
+	padding: 1% 1% 1% 1%;
+	font-size:18px;
+	color:#e58e5a;
+}
+#homeLink{
+	color:#e58e5a;
+	width:10%;
+	height:5%;
+	margin-right:1%;
+	/*border:1px solid #e58e5a;*/
+	font-size:24px;
+	color:e58e5a;
+	text-decoration:underline;
+}
+
+#contentTabs>div{
+	width:100%;
+	height:10%;
+	/*display:block;*/
+	border:1px solid #e58e5a;
+	/*float:left;*/
+	margin: 1% 1% 1% 1%;
+}
+
+#contentArea{
+	/*display:inline-block;
+	position:inline;*/
+	/*top:8%;*/
+	/*top:0%;
+	left:10%;*/
+	top:0%;
+	width:85%;
+	height:100%;
+	/*float:left;*/
 }
