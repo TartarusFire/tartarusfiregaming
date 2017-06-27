@@ -269,8 +269,25 @@ a:hover, .link{
 
 #float{
 	position:absolute;
-	width:100%;
+	padding:0;
+	margin:0;
+	border:1px solid #e58e5a;
+	/*width:100%;
 	height:100%;
 	top:0%;
-	left:0%;
+	left:0%;*/
+}
+
+#pull{
+	width:100%;
+	padding:0;
+	margin:0;
+	border:0;
+	position:absolute;
+	background-color:black;
+	color:#e58e5a;
+	/*width:100%;
+	height:100%;
+	top:0%;
+	left:0%;*/
 }

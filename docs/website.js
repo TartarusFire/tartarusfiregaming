@@ -1,6 +1,7 @@
 var nav = document.getElementById('contentTabs');
 var content = document.getElementById('contentArea');
 var cFrame = document.getElementById('contentFrame');
+var fFrame = document.getElementById('float');
 
 var mainPages = ["AI","Games","Tools"];
 var subPages = [["Desktop Ponies"],["Pony Sim City"],["VideoFileStreamer"]];
@@ -46,3 +47,34 @@ function openPage(page){
 			page = page.replace(" ", "-");
 	cFrame.src=page+".html";
 }
+
+/*
+var free =false;
+function jailbreak(){
+	if(free){
+		
+	}else{
+		fFrame.style.display="visible";
+		//fFrame.top=cFrame.top;
+		//fFrame.left=cFrame.left;
+		document.getElementsByTagName('iframe')[0].getAttribute('width');
+		document.getElementsByTagName('iframe')[0].getAttribute('height');
+		var w = cFrame.document.width;//cFrame.getAttribute('width');
+		var h = cFrame.document.height;//cFrame.getAttribute('height');//+document.getElementById('pull').height;
+		console.log(w);
+		console.log(h);
+		fFrame.append(cFrame);
+		cFrame.style.zIndex=666;
+		cFrame.width=w;
+		cFrame.height=h;
+		fFrame.width=w;
+		fFrame.height=h;
+		
+		
+		
+		
+		fFrame.style.display="visible";
+		free=true;
+	}
+}
+*/
