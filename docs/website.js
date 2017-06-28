@@ -4,7 +4,7 @@ var cFrame = document.getElementById('contentFrame');
 var fFrame = document.getElementById('float');
 
 var mainPages = ["AI","Games","Tools"];
-var subPages = [["Desktop Ponies"],["Pony Sim City"],["VideoFileStreamer"]];
+var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer"]];
 addToNavigation(mainPages);
 
 var _Spgs = 0;

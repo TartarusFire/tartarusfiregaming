@@ -1,0 +1,153 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css"/>
+<style>
+html,body,div,video{
+padding:0;
+margin:0;
+}
+</style>
+</head>
+<body class="transparent">
+
+<div id="vid" width="640" height="360"><!--https://docs.google.com/uc?id=0B-UZHbKERL_cNnhFRkJSN2I3NTg-->
+<video id="video" width="640" height="360" fullscreen autoplay toggle controls preload="metadata" poster="https://docs.google.com/uc?id=0B-UZHbKERL_cZXh0Wlk3dk9jemM" allowfullscreen="true">
+
+Your browser doesn't support HTML5 video tag.
+</video>
+</div>
+</div>
+<div>
+<input type="text" id="vsrc" readonly="true" style="width:640px;border:0;"/>
+</div>
+
+<div id="seek">
+<style>
+.buffered {
+  height: 20px;
+  position: relative;
+  background: #555;
+  width: 640px;
+}
+
+#buffered-amount {
+  display: block;
+  height: 100%;
+  background-color: #777;
+  width: 0;
+}
+
+.progress {
+  margin-top: -20px;
+  height: 20px;  
+  position: relative;
+  width: 640px;
+}
+
+#progress-amount {
+  display: block;
+  height: 100%;
+  background-color: #595;
+  width: 0;
+}
+</style>
+<div class="buffered" id="bar">
+  <span id="buffered-amount"></span>
+</div>
+<div class="progress">
+  <span id="progress-amount"></span>
+</div>
+</div>
+
+<script type="text/javascript">
+var video = document.getElementById('video');
+function startStreamDownload(){
+video.src=document.getElementById('tream').value;
+document.getElementById('vsrc').value=video.src;
+}
+
+function toggle(){
+if(video.paused)
+	video.play();
+	else
+	video.pause();
+}
+
+var press = 0;
+video.onclick = function(e) {
+toggle();
+}
+
+window.addEventListener("keypress", KP);
+function KP(e) {
+	if(press)return;
+	press = e.keyCode;
+	switch(press){
+	case(32):
+	toggle();
+	break;
+	}
+	
+};
+window.addEventListener("keyup", KR);
+function KR(e) {
+if(e.keyCode==press)press=0;
+}
+
+video.addEventListener('wheel', scrollHandler,false);
+
+function scrollHandler(e){
+	e.preventDefault();
+	if(e.deltaY<0){
+		if(video.volume<1)
+		video.volume+=.1;
+		if(video.volume>1)video.volume=1;
+	}else{
+		if(video.volume>0)
+		video.volume-=.1;
+		if(video.volume<0)video.volume=0;
+	}
+	return false;
+}
+
+resetSeeking();
+
+//https://stackoverflow.com/questions/18422517/html5-video-buffered-attribute-features
+document.getElementById("bar").addEventListener('onclick', setPosition,false);
+function setPosition(e){
+alert();
+}
+//https://developer.mozilla.org/en-US/Apps/Fundamentals/Audio_and_video_delivery/buffering_seeking_time_ranges
+function resetSeeking(){
+	video.addEventListener('progress', function() {
+	var duration =  video.duration;
+	if (duration > 0) {
+		for (var i = 0; i < video.buffered.length; i++) {
+			if (video.buffered.start(video.buffered.length - 1 - i) < video.currentTime) {
+				document.getElementById("buffered-amount").style.width = (video.buffered.end(video.buffered.length - 1 - i) / duration) * 100 + "%";
+			break;
+			}
+		}
+	}
+	});
+
+	video.addEventListener('timeupdate', function() {
+	var duration =  video.duration;
+		if (duration > 0) {
+			document.getElementById('progress-amount').style.width = ((video.currentTime / duration)*100) + "%";
+		}
+	});
+}
+
+
+
+</script>
+
+<div id="gen">
+<p>Direct File Link <input type="text" size="35" onclick="this.value='';" id="tream"/><input type="button" value="Start Stream" onclick="startStreamDownload()"/></p>
+</div>
+
+</body>
+</html>
