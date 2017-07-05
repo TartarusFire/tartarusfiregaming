@@ -1,0 +1,373 @@
+<!doctype html>
+<html >
+<head>
+<meta charset="UTF-8"><!--Declare charset so funny error text will op up :V-->
+<title>
+ARC Animation [Browser]
+</title>
+
+<!--<style type="text/css">
+</style>-->
+<link rel="stylesheet" href="resources/css/backbone/scour.css" />
+
+<script type="text/javascript" src="GraphicsObjects/CanvasGraphics.js"></script><!--FIRST SCRIPT THAT SHOULD ALWAYS BE LOADED FIRST-->
+
+<!--now handled by htmls cript with trigger script-->
+<!--<script type="text/javascript">Create variables needed BEFORE script loading-- >
+var allowContextMenu = false;
+function allowContextMenuCheck(){
+/*if(allowContextMenu){//disable as soon as it is called
+allowContextMenu=false;
+return true;
+}else*/
+
+i_menu=1;
+setContextMenu();
+
+return allowContextMenu;
+}
+</script>-->
+
+</head>
+
+<body class="clean">
+<div id="loading_screen" style="z-index:666; background-color:#4F4F4F;width:100%;height:100%;position:absolute;">
+<img src="resources/images/box_loader.gif" style="margin:auto;display:block;"/>
+<!--trasform() can be used to move pixel or percentage counts further-->
+</div>
+<!--<div id="file_explorer_overlay" width="100%" height="20%" style="display:none; z-index:10;">
+<iframe width="100%" height="100%"  src=".">
+Whups something went sroong :VVV
+</iframe>
+</div>-->
+
+<div id="filebar" class="clean" oncontextmenu="return allowContextMenuCheck(-1);" style="display:none;">
+<div id="file" class="clean" onclick="try{html_toggle_menus(0);}catch(e){console.log('--Page Script not yet loaded--');}">File<div id="filebar_hider"></div></div>
+
+<div id="file" class="clean" onclick="try{html_toggle_menus(1);}catch(e){console.log('--Page Script not yet loaded--');}">Video<div id="filebar_hider"></div></div>
+<div id="file" class="clean" onclick="try{html_toggle_menus(2);}catch(e){console.log('--Page Script not yet loaded--');}">Canvas<div id="filebar_hider"></div></div>
+<div id="file" class="clean"><!--DIVIDER (still acts like a button tho -- uh...)--><div id="filebar_hider"></div></div>
+<div id="file" class="clean" onclick="try{html_toggle_menus(4);}catch(e){console.log('--Page Script not yet loaded--');}">Preferences<div id="filebar_hider"></div></div>
+<div id="file" class="clean"><!--DIVIDER (still acts like a button tho -- uh...)--><div id="filebar_hider"></div></div>
+<div id="file" class="clean"><!--DIVIDER (still acts like a button tho -- uh...)--><div id="filebar_hider"></div></div>
+<div id="file" class="clean"><!--DIVIDER (still acts like a button tho -- uh...)--><div id="filebar_hider"></div></div>
+<div id="file" class="clean" onclick="try{html_toggle_menus(8);}catch(e){console.log('--Page Script not yet loaded--');}">Tools<div id="filebar_hider"></div></div>
+<div id="file" class="clean">RAW<div id="filebar_hider"></div></div>
+</div>
+
+<div id="canvas_context" style="display:none; top:0px;left:0px;" class="clean">
+<div id="left_header"> Canvas Context Menu</div>
+<div id="data">Create Line</div>
+<div id="data">...</div>
+<div id="data">...</div>
+</div>
+
+<div id="resource_context" style="display:none; top:0px;left:0px;" class="clean">
+<div id="left_header"> Resource Context Menu</div>
+<div id="data" onclick="">Add Resource...</div>
+<div id="data" onclick="addResourceTreeItem()">Add Blank Resource</div>
+<div id="data" onclick="">>>Insert Blank Line Series</div>
+<div id="data" onclick="">>>>>Insert Blank Line System</div>
+<div id="data" onclick="">>>>>>>Insert Blank Line</div>
+</div>
+
+<div id="fileMenu" class="clean">
+
+<div>
+<img src="resources/images/open.png"/> Open
+</div>
+<div>
+<img src="resources/images/save.png"/> Save
+</div>
+<div>
+<img src="resources/images/saveas.png"/> Save As...
+</div>
+
+</div>
+
+<div id="videoMenu" class="clean">
+<div onclick="html_video_sizes_toggle();">
+<img src="resources/images/box_fun.gif"/> Set Canvas Size \/
+<div style="display:none;" id="canvasSizes">
+<table id="canvasSizesMenu">
+<tr id="csm_sel" onclick="video.resizeCanvas(640,360);drawVideoCanvas();redrawCanvas();html_video_sizes_select_toggle(0);">
+<td>
+SD
+</td>
+<td>
+640x360
+</td>
+</tr>
+<tr id="csm" onclick="video.resizeCanvas(720,480);drawVideoCanvas();redrawCanvas();html_video_sizes_select_toggle(1);">
+<td>
+HD
+</td>
+<td>
+720x480
+</td>
+</tr>
+<tr id="csm" onclick="video.resizeCanvas(1080,720);drawVideoCanvas();redrawCanvas();html_video_sizes_select_toggle(2);">
+<td>
+WHD
+</td>
+<td>
+1080x720
+</td>
+</tr>
+<tr id="csm" onclick="video.resizeCanvas(1280,720);drawVideoCanvas();redrawCanvas();html_video_sizes_select_toggle(3);">
+<td>
+FHD
+</td>
+<td>
+1280x720
+</td>
+</tr>
+<tr id="csm" onclick="video.resizeCanvas(1980,1080);drawVideoCanvas();redrawCanvas();html_video_sizes_select_toggle(4);">
+<td>
+2k
+</td>
+<td>
+1980x1080
+</td>
+</tr>
+</table>
+
+<div onclick="html_video_sizes_toggle();">
+Custom
+<div>
+<input type="text" size="10%" style="width: 30%" maxlength="5" id="csmx"/>x<input type="text" style="width: 30%" maxlength="5"; id="csmy"/>
+<input type="button" value="Resize" onclick="html_custom_video_sizes();html_video_sizes_select_toggle();"/>
+</div>
+</div>
+
+</div>
+</div>
+<div onclick="html_video_fps_toggle();">
+<img src="resources/images/box_fun.gif"/> Set Framerate (FPS) \/
+
+<div style="display:none;" id="fpsValues">
+<table id="fpsTable">
+<tr id="fps" onclick="">
+<td>
+1/10
+</td>
+<td>
+10 FPS
+</td>
+<tr id="fps" onclick="">
+<td>
+On One's
+</td>
+<td>
+12 FPS
+</td>
+</tr>
+<tr id="fps" onclick="">
+<td>
+Broadcast(rounded)(On Two's)
+</td>
+<td>
+24 FPS
+</td>
+</tr>
+<tr id="fps" onclick="">
+<td>
+Gaming (old)
+</td>
+<td>
+30 FPS
+</td>
+</tr>
+<tr id="fps" onclick="">
+<td>
+Gaming (deprecated)
+</td>
+<td>
+60 FPS
+</td>
+</tr>
+<tr id="fps" onclick="">
+<td>
+Gaming (new)
+</td>
+<td>
+144 FPS
+</td>
+</tr>
+</table>
+
+<div onclick="html_video_fps_toggle();">
+Custom
+<div>
+<input type="text" size="10%" style="width: 30%" maxlength="3" id="fpsv"/>
+<input type="button" value="Set Fps" onclick=""/>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div id="canvasMenu" class="clean">
+<div onclick="vidVars[0]=surface.getWidth()/2-video.getWidth()/2;vidVars[1]=surface.getHeight()/2-video.getHeight()/2;redrawCanvas();">
+<img src="resources/images/box_fun.gif"/> Center Canvas
+</div>
+<div onclick="vidVars[0]=0;vidVars[1]=0;redrawCanvas();">
+<img src="resources/images/box_fun.gif"/> Reset Canvas Position
+</div>
+
+</div>
+
+<div id="preferenceMenu" class="clean">
+<div onclick="html_local_fps_toggle();">
+<img src="resources/images/box_fun.gif"/> Local Framerate \/
+<div style="display:none;" id="localFPS">
+<table> <!--id=""--->
+<tr id="lfps" onclick="vidVars[7]=1000/10;html_local_fps_select_toggle(0);">
+<td>
+10 FPS
+</td>
+<td>
+100 MS
+</td>
+</tr>
+<tr id="lfps_sel" onclick="vidVars[7]=1000/24;html_local_fps_select_toggle(1);">
+<td>
+24 FPS
+</td>
+<td>
+41.6667 MS
+</td>
+</tr>
+<tr id="lfps" onclick="vidVars[7]=1000/30;html_local_fps_select_toggle(2);">
+<td>
+30 FPS
+</td>
+<td>
+33.3333 MS
+</td>
+</tr>
+<tr id="lfps" onclick="vidVars[7]=1000/60;html_local_fps_select_toggle(3);">
+<td>
+60 FPS
+</td>
+<td>
+16.6667 MS
+</td>
+</tr>
+<tr id="lfps" onclick="vidVars[7]=1000/144;html_local_fps_select_toggle(4);">
+<td>
+144 FPS
+</td>
+<td>
+6.9444 MS
+</td>
+</tr>
+
+</table>
+<div onclick="html_local_fps_toggle();">
+Custom
+<div>
+<input type="text" size="10%" style="width: 30%" maxlength="3" id="lfpsv"/>
+<input type="button" value="Set Fps" onclick="vidVars[7]=1000/document.getElementById('lfpsv').value;html_local_fps_select_toggle();"/>
+</div>
+</div>
+</div>
+</div>
+
+<div onclick="allowContextMenu=!allowContextMenu; if(allowContextMenu)this.id='on_sel';else this.id='';">
+<img src="resources/images/box_fun.gif"/> Interleave Context Menus (developer)
+</div>
+
+
+</div>
+
+<div id="toolsMenu" class="clean">
+<div onclick="">
+<img src=""/> ""
+</div>
+</div>
+
+
+<div id="full" style="display:none;">
+<div id="left_panel" class="clean">
+
+<div id="left_data" class="clean" oncontextmenu="return allowContextMenuCheck(1);">
+	<!--<div id="data"><img src=""/>Test Data</div>-->
+</div>
+<div id="left_header" class="clean">Resources</div>
+</div>
+
+
+<div id="center_panel" class="clean">
+	<div id="north_panel" class="clean">
+		<!--<div id="zoom" width="20%" style="color:white; position:absolute; z-index:0">Zoom: 100%</div>-->
+
+		<canvas id="canvas" class="clean" oncontextmenu="return allowContextMenuCheck(0);">
+			<div style="text-align:center;vertical-align: middle;top:50%;color:white;">
+			(╯°□°）╯︵ ┻━┻
+			Welp. You don't have canvas on your browser :'V
+			¯\_(ツ)_/¯
+			</div>
+		</canvas>
+	</div>
+</div>
+
+
+
+<div id="right_panel" class="clean" oncontextmenu="return allowContextMenuCheck(-1);"><!--Tools Toolbar-->
+
+</div>
+
+<div id="mass_south" class="clean">
+
+</div>
+
+</div>
+
+<script type="text/javascript" src="resources/scripts/general/htmls.js"></script>
+
+<script type="text/javascript" src="resources/scripts/action/innerCanvas.js"></script>
+<script type="text/javascript" src="resources/scripts/action/treeStuffs.js"></script>
+
+<script type="text/javascript" src="resources/scripts/general/CanvasAnimation.js"></script>
+<script type="text/javascript" src="resources/scripts/action/triggers.js"></script>
+
+<script type="text/javascript" src="resources/scripts/data/data.js"></script>
+
+<script type="text/php" src="resources/scripts/data/fileHandling.php"></script>
+
+<!--<div>
+<?php include 'resources/scripts/fileHandling.php';
+echo "FileHandling has been found and loaded.";
+?>
+<?php include("resources/scripts/fileHandling.php"); ?>
+</div>-->
+
+<script type="text/javascript">
+var trash_lod = document.getElementById("loading_screen");
+var trash_alph = 1;
+function trash_smooth(){
+	if(trash_alph>0){
+	trash_lod.style.backgroundColor='rgba(79,79,79,'+trash_alph+')';
+	trash_alph-=.05;
+	setTimeout(trash_smooth,50);
+	}else{
+		document.getElementsByTagName('body')[0].removeChild(trash_lod);
+	}
+
+}
+setTimeout(function(){
+//document.getElementsByTagName('body')[0].style.display="";
+document.getElementById("filebar").style.display="";
+document.getElementById("full").style.display="";
+setTimeout(trash_smooth,50);
+resizeCanvas();
+},500);
+/*document.getElementsByTagName('body')[0].style.display="";
+resizeCanvas();*/
+</script>
+
+</body>
+</html>
