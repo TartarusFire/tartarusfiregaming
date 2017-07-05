@@ -1,0 +1,108 @@
+<!doctype HTML>
+<html>
+<meta charset="UTF-8">
+<head>
+<title>
+Framing Ware
+</title>
+<style>
+html,body,form,div{
+padding:0;
+margin:0;
+border:0;
+}
+img,canvas,.canvas,#canvas {
+	image-rendering:-webkit-optimize-contrast;
+	image-rendering:optimizeSpeed;             /* Legal fallback */
+	image-rendering:-moz-crisp-edges;          /* Firefox        */
+	image-rendering:-o-crisp-edges;            /* Opera          */
+	image-rendering:-webkit-optimize-contrast; /* Safari         */
+	image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+	image-rendering:crisp-edges;               /* CSS4 Proposed  */
+	image-rendering:pixelated;                 /* CSS4 Proposed  */
+	-ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+}
+
+#controls{
+width:100%;
+height:10%;
+}
+
+#frames{
+width:100%;
+height:50%;
+}
+
+.frame{
+position:relative;
+width:90vw;
+height:85vh;
+left:5%;
+}
+/*
+iframe,.frame{
+webkitallowfullscreen:true;
+mozallowfullscreen:true;
+allowfullscreen:true;
+}
+
+iframe:-webkit-full-screen {
+  background-color: pink;
+}
+
+iframe:-moz-full-screen {
+  background-color: pink;
+}
+
+iframe:-ms-fullscreen {
+  background-color: pink;
+}
+
+iframe:fullscreen {
+  background-color: pink;
+}
+
+/*100% inside a 50% rule*;*/
+</style>
+
+</head>
+<body>
+
+<div id="controls">
+<p><input type="text" style="width:40%" id="user_url"/><input type="button" onclick="generateFrameFromURL();" value="Create Frame"/></p>
+<hr/>
+</div>
+
+<div id="bots"><!--Pre Defined Avaible Bots-->
+
+</div>
+
+<div id="frames" allowfullscreen="true"><!--User Added Frames-->
+
+</div>
+
+
+
+
+<script type="text/javascript">
+function parentSize(el){
+el.height=el.parentElement.height;
+}
+
+var frames = document.getElementById("frames");
+function generateFrameFromURL(){
+var el = document.createElement("iframe");
+//el.allowfullscreen=true;
+el.allowfullscreen="true";
+
+el.style="allowfullscreen:true;"
+el.className="frame";
+el.allowfullscreen="true";
+el.setAttribute('allowFullScreen', 'true')
+el.src=document.getElementById("user_url").value;
+frames.append(el);
+}
+</script>
+
+</body>
+</html>

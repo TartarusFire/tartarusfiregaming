@@ -1,0 +1,276 @@
+body,#full{
+	overflow: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width:100vw;
+	height:100vh;
+	font-family:Arial;
+}
+
+#full{
+background-color:#5F5F5F;
+top:4%;
+}
+
+.clean, div {
+	margin:0;
+	padding:0;
+	position: relative;
+}
+
+#left_panel{
+	width:20%;
+	height:75%;
+}
+
+#center_panel{
+	width:70%;
+	height:75%;
+	left:20%;
+	top:-75%;
+}
+
+#north_panel{
+	width: 100%;
+	height: 100%;
+}
+
+#canvas{
+	width: 100%;
+	height: 100%;
+}
+
+#right_panel{
+	width: 10%;
+	height: 75%;
+	left:90%;
+	top:-150%;
+}
+
+#mass_south{
+	width: 100%;
+	height: 21%;
+	top:-150%;
+}
+
+
+
+
+
+
+#filebar{
+	width: 100%;
+	height: 4%;
+	top:0px;
+	left:0px;
+	background-color:#414141;
+}
+
+#file:hover{
+background-color:#6F6F6F;
+/*border:1px white solid;*/
+}
+
+#file{
+	float:left;
+	width: 10%;
+	height: 100%;
+	color:white;
+	font-size:16px;
+	/*border:1px white dashed;*/
+	text-align:center;
+
+
+	/*IE / Opera*/
+	unselectable:on;
+
+	/*Firefox / Chrome / Safari*/
+	-moz-user-select:none;
+	-webkit-user-select:none;
+
+
+	/*Prevent the border from causing elements to resize*/
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px #414141 solid;
+}
+
+#fileMenu >div:hover, #videoMenu >div:hover, #videoMenu >div >div >div:hover, #csm >td:hover,#fps >td:hover, #canvasMenu >div:hover,
+#preferenceMenu >div:hover, #lfps >td:hover,#preferenceMenu >div >div >div:hover, #canvas_context, #resource_context,#data_data{
+	/*
+	background-color:#7F7F7F;
+	*/
+	border:1px white solid;
+	/*Prevent the border from causing elements to resize*/
+	padding:0;
+	border-width:1px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#csm_sel,#lfps_sel,#on_sel{
+	/**/
+	background-color:#7F7F7F;
+	/*Prevent the border from causing elements to resize*/
+	padding:0;
+	border-width:1px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.data_select{
+	/**/
+	background-color:#7F7F7F;
+	/*Prevent the border from causing elements to resize*/
+	padding:0;
+	/*border: 1px green solid;*/
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+#fileMenu, #videoMenu, #canvasMenu,#preferenceMenu,#toolsMenu{
+	overflow:auto;
+	position:absolute;
+	top:4%;
+	left:0px;
+	width:20%;
+	height:50%;
+	z-index:-1;/*set to 1 or greater (0 works,but ehhh)*/
+	background-color:#414141;
+	border: 1px #414141 solid;
+
+	/*IE / Opera*/
+	unselectable:on;
+
+	/*Firefox / Chrome / Safari*/
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+
+#videoMenu{
+left:10%;
+}
+#canvasMenu{
+left:20%;
+}
+#preferenceMenu{
+left:40%;
+}
+#toolsMenu{
+left:80%;
+}
+
+#fileMenu > div, #videoMenu > div, #videoMenu > div >div, #canvasMenu > div, #preferenceMenu > div, #preferenceMenu > div >div{
+	color:white;
+	font-size:16px;
+	border:1px #414141 solid;
+	/*border:1px white dashed;*/
+
+	/*Prevent the border from causing elements to resize*/
+	padding:0;
+	border-width:1px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
+#fileMenu > div > img, #videoMenu > div > img, #canvasMenu > div >img, #preferenceMenu > div> img,
+#data>img{
+	width:32px;
+	height:32px;
+}
+
+
+
+#left_header{
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	width:100%;
+	height:20px;
+	color:white;
+	text-align:center;
+	border-bottom:1px black solid;
+	background-color:#4F4F4F;
+	/*IE / Opera*/
+	unselectable:on;
+
+	/*Firefox / Chrome / Safari*/
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+
+#canvas_context, #resource_context{
+width:20%;
+height:30%;position:relative;
+overflow:auto;
+/*top:25px;left:25px;*/
+color:white;
+/*display:none;*/
+z-index:1;
+background-color:#333333;
+}
+
+#data{
+	width:100%;
+	top:20px;
+	overflow:hidden;
+	position:relative;
+	border-top:1px #5F5F5F solid;
+	border-bottom:1px #5F5F5F solid;
+	/*IE / Opera*/
+	unselectable:on;
+
+	/*Firefox / Chrome / Safari*/
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+#data:hover{
+border-top:1px white solid;
+border-bottom:1px white solid;
+}
+
+#left_data{
+	/*padding-top:20px;*/
+	overflow:auto;
+	position:absolute;
+	left:0px;
+	width:100%;
+	height:100%;
+
+	color:white;
+	text-align:left;
+	/*border-bottom:1px black solid;*/
+
+	/*IE / Opera*/
+	unselectable:on;
+
+	/*Firefox / Chrome / Safari*/
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+
+
+
+
+/*
+#filebar_hider{
+	position:absolute;
+	top:0;left:0;
+	width:100%;
+	height:100%;
+	z-index:1;
+	background-color:red;
+}
+*/

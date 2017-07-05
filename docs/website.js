@@ -4,7 +4,7 @@ var cFrame = document.getElementById('contentFrame');
 var fFrame = document.getElementById('float');
 
 var mainPages = ["AI","Games","Tools"];
-var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer"]];
+var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer","FramerWare Protype","Canvas Animation"]];
 addToNavigation(mainPages);
 
 var _Spgs = 0;
@@ -37,6 +37,7 @@ function addToNavigation(dat){
 }
 
 function openPage(page){
+	//animatePage();
 	console.log(page);
 	page = ""+page;
 	page = page.toLowerCase();
@@ -46,6 +47,10 @@ function openPage(page){
 		if(page[i]==' ')
 			page = page.replace(" ", "-");
 	cFrame.src=page+".html";
+}
+
+function animatePage(){
+	
 }
 
 /*
