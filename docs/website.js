@@ -53,6 +53,37 @@ function animatePage(){
 	
 }
 
+function requestFullScreen(e){
+	if(e.mozRequestFullScreen){
+		e.mozRequestFullScreen();
+		return;
+	}
+	if(e.webkitRequestFullScreen){
+		e.webkitRequestFullScreen();
+		return;
+	}
+	if(e.khtmlRequestFullScreen){
+		e.khtmlRequestFullScreen();
+		return;
+	}
+	if(e.requestFullScreen){
+		e.requestFullScreen();
+		return;
+	}
+	
+	if(e.msRequestFullScreen){
+		e.msRequestFullScreen();
+		return;
+	}
+	/*if(e.mozRequestFullScreen){
+		e.mozRequestFullScreen();
+	}
+	if(e.mozRequestFullScreen){
+		e.mozRequestFullScreen();
+	}*/
+	
+}
+
 /*
 var free =false;
 function jailbreak(){
