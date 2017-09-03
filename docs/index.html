@@ -36,12 +36,12 @@
 <!--/Navigation-->
 <!--Fun_controls-->
 <div id="controls">
-<form id="control" class="small">
-  <input type="checkbox" name="vehicle" value="Site Animations" checked>Page Animations<br>
-  <input type="checkbox" name="vehicle" value="fullscreen">FullScreen Content<br>
+<div id="control" class="small"><!--<form-->
+<input type="checkbox" id="vehicle" value="pAnim" checked>Page Animations<br>
+<input type="button" id="fullscreen" value="fullscreen" onclick="requestFullScreen(cFrame)"/><!--FullScreen Content<br>-->
   <!--<input type="checkbox" name="vehicle" value="Car" checked> I have a car<br>-->
   <!--<input type="submit" value="Submit">-->
-</form>
+</div><!--</form>-->
 </div>
 <!--/Fun_controls-->
 
@@ -58,7 +58,7 @@
 
 
 <div id="contentArea">
-<iframe id="contentFrame" allowfullscreen="true" src="intro.html">
+<iframe id="contentFrame" allowFullScreen="true" src="intro.html"><!--allowfullscreen="true"-->
 Error
 </iframe>
 
