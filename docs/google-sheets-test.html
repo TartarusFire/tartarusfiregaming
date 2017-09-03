@@ -1,0 +1,155 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body class="transparent">
+
+<input id="sheeturl" type="input" size="50" onclick="getSheetsCell()"/><br/>
+<p>Data:<input id="recall" type="input" size="40"/></p><br/>
+<input id="pax" type="button" value="PostDataTest" onclick="paxSpred()"/>
+
+<script type="text/javascript">
+/*
+public static String defURI = "https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetID}/values/{range}?key={key}";
+public static String URI = defURI;
+public static String key = "AIzaSyCx23-zrJSbZ2weWkSIZepwocoB8J6oL4w";
+public static String spreadID = "1i07WARGbFtyBXbh_O-Bzvzi1FUjHj3D6eTVL0V_Z6Bo";
+*/
+
+
+var s_in = document.getElementById("sheeturl");
+var s_out = document.getElementById("recall");
+var oReq,stress=0,lock=0;
+
+function transferComplete(evt) {
+  console.log("The transfer is complete.");
+}function transferFailed(evt) {
+  console.log("An error occurred while transferring the file.");
+}function transferCanceled(evt) {
+  console.log("The transfer has been canceled by the user.");
+}
+
+function grabData(){
+	console.log(JSON.stringify(oReq.response));
+	var pars = JSON.parse(oReq.response);
+	s_out.value=JSON.parse(oReq.response).values;
+}
+
+function requestPlainText(URL){
+oReq = new XMLHttpRequest();
+oReq.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1i07WARGbFtyBXbh_O-Bzvzi1FUjHj3D6eTVL0V_Z6Bo/values/A1?key=AIzaSyCx23-zrJSbZ2weWkSIZepwocoB8J6oL4w");
+// retrieve data unprocessed as a binary string -- need this to be JSON specific
+//oReq.overrideMimeType("text/plain; charset=x-user-defined");
+oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+oReq.send();
+
+
+oReq.addEventListener("load", grabData);
+oReq.addEventListener("error", transferFailed);
+oReq.addEventListener("abort", transferCanceled);
+
+}
+
+function graxSpred(){
+var oReq = new XMLHttpRequest();
+oReq.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1i07WARGbFtyBXbh_O-Bzvzi1FUjHj3D6eTVL0V_Z6Bo/values/A1?key=AIzaSyCx23-zrJSbZ2weWkSIZepwocoB8J6oL4w");
+// retrieve data unprocessed as a binary string -- need this to be JSON specific
+//oReq.overrideMimeType("text/plain; charset=x-user-defined");
+oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+oReq.send();
+
+oReq.addEventListener("load", function(){
+stress++;
+lock=0;
+console.log(""+oReq.request);
+});
+
+}
+
+//>>>https://docs.google.com/spreadsheets/d/1t141qoLtqLZUzzUDvn1JMjxwpHwMN_EmCgJ5Lm2Nyw4/edit?usp=sharing
+//>>>>1t141qoLtqLZUzzUDvn1JMjxwpHwMN_EmCgJ5Lm2Nyw4
+//>>>>
+
+function paxSpred(){
+oReq = new XMLHttpRequest();
+//PUT https://sheets.googleapis.com/v4/spreadsheets/spreadsheetId/values/
+oReq.open("PUT", "https://sheets.googleapis.com/v4/spreadsheets/1i07WARGbFtyBXbh_O-Bzvzi1FUjHj3D6eTVL0V_Z6Bo/values/Sheet1!A1?key=AIzaSyCx23-zrJSbZ2weWkSIZepwocoB8J6oL4w?access_token=ya29.GlubBNx5f4kTZCxRcyBkC9LY5FOJCWOp-8qSZWNwknPHEQxapTZcdL2srJSGFNzshQ2Wkp6Su24l4pbM4sF82xjBk9nk95uzW1STbkuY7XBNwRtYFO7mV5RQ2-B-");
+//oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+oReq.send();
+/**
+var oReq = new XMLHttpRequest();
+oReq.open("GET", "https://sheets.googleapis.com/v4/spreadsheets/1i07WARGbFtyBXbh_O-Bzvzi1FUjHj3D6eTVL0V_Z6Bo/values/Sheet1!A1:A1?valueInputOption=RAW&key=AIzaSyCx23-zrJSbZ2weWkSIZepwocoB8J6oL4w");
+// retrieve data unprocessed as a binary string -- need this to be JSON specific
+//oReq.overrideMimeType("text/plain; charset=x-user-defined");
+//oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//////oReq.send("{\"range\": \"Sheet1!A1\",\"majorDimension\": \"ROWS\",\"values\": [[\""+stress+"\"]]}");
+//oReq.send("{\"range\": \"Sheet1!A1\",\"majorDimension\": \"ROWS\",\"values\": [[\"aaa\"]]}");
+//"{\"range\": \"Sheet1!A1\",\"majorDimension\": \"ROWS\",\"values\": [[\""+stress+"\"]]}"
+
+var ValueRange = {};
+//ValueRange.spreadsheetId= "1i07WARGbFtyBXbh_O-Bzvzi1FUjHj3D6eTVL0V_Z6Bo";
+//ValueRange.range="Sheet1!A1";
+ValueRange.valueInputOption= "RAW";
+ValueRange.majorDimension= "ROWS";
+ValueRange.values=["333"];
+
+//oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+oReq.send(JSON.stringify(ValueRange));
+**/
+oReq.addEventListener("load", function(){
+console.log("hek");
+});
+
+}
+
+var ex = Date.now();
+function subStress(){
+	
+	paxSpred();//post
+	//graxSpred();//get + post of simple data
+	
+	if(Date.now()-ex<1000)
+	setTimeout(subStress,100);
+	else lock = 1;
+	
+}
+
+function stressTest(){
+	
+	ex = Date.now();
+	
+	subStress();
+	
+	/*for(var i = 0; i < 1000;i++){
+		lock=1;
+		graxSpred();
+		/*while(lock){
+			if(Date.now()-ex>1000)break;
+		}*/
+		//if(Date.now()-ex>1000)break;
+	//}*/
+	
+	
+	
+	console.log("FINAL: "+stress);
+	
+}
+
+function getSheetsCell(){
+if((""+s_in.value).length<1)return;
+
+requestPlainText("http://www.google.com/")
+
+//console.log(s_out.value);
+
+
+
+
+}
+</script>
+
+</body>
+</html>

@@ -3,8 +3,9 @@ var content = document.getElementById('contentArea');
 var cFrame = document.getElementById('contentFrame');
 var fFrame = document.getElementById('float');
 
-var mainPages = ["AI","Games","Tools"];
-var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer","FramerWare Protype","Canvas Animation"]];
+var mainPages = ["AI","Games","Tools","Tests"];
+var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer","FramerWare Protype","Canvas Animation","EmbededStreamer"]];
+var lnkPages = [["desktop-ponies.html"],["pony-sim-city.html"],["video-file-streamer.html","framerware-protype.html","canvas-animation.html","embededstreamer.html"]];
 addToNavigation(mainPages);
 
 var _Spgs = 0;
@@ -20,7 +21,8 @@ function addToNavigation(dat){
 					var s = document.createElement('div');
 					var p = document.createElement('p');
 					p.textContent=""+subPages[i][q];
-					p.onclick = function(){openPage(this.textContent);};
+					var nmm = lnkPages[i][q];
+					p.onclick = function(){/*var l =nmm; cFrame.src=l;*/openPage(this.textContent);};
 					p.className="link";
 					//a.addEventListener('mousedown', openPage(this),false);
 					s.append(p);
