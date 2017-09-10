@@ -17,6 +17,7 @@ margin:0;
 
 Your browser doesn't support HTML5 video tag.
 </video>
+<div id="resize" style="left:640px;height:360px;"></div>
 </div>
 </div>
 <div>
@@ -25,6 +26,24 @@ Your browser doesn't support HTML5 video tag.
 
 <div id="seek">
 <style>
+#resize:hover{
+	position:absolute;
+	top:0px;
+	cursor: e-resize;
+	background-color:rgba(200,200,200,1);
+	width:8px;
+	/*left:640px;
+	height:100%;*/
+}
+#resize{
+	position:absolute;
+	top:0px;
+	cursor: e-resize; 
+	width:8px;
+	/*left:640px;
+	height:100%;*/
+	background-color:rgba(0,0,0,0);
+}
 .buffered {
   height: 20px;
   position: relative;
@@ -62,6 +81,7 @@ Your browser doesn't support HTML5 video tag.
 </div>
 
 <script type="text/javascript">
+var vW = 640;
 var video = document.getElementById('video');
 function startStreamDownload(){
 video.src=document.getElementById('tream').value;
@@ -79,6 +99,53 @@ var press = 0;
 video.onclick = function(e) {
 toggle();
 }
+
+
+document.addEventListener("mousemove", function(e){
+//rf = 0;
+if(rf==1){
+        video.width=(video.getBoundingClientRect().left+(e.pageX - document.body.scrollLeft));
+		video.height=Math.ceil(video.width/16.0*9.0);
+		//console.log(video.getBoundingClientRect().left);
+		rff.style.left=video.width+"px";
+		rff.style.height=video.height+"px";
+		//console.log(video.getBoundingClientRect().left + window.scrollX);
+    }
+}, false);
+document.addEventListener("mouseup", function(e){
+rf = 0;
+}, false);
+
+//https://stackoverflow.com/questions/6042202/how-to-distinguish-mouse-click-and-drag
+var rf = 0;
+var rff = document.getElementById("resize");
+rff.addEventListener("mousedown", function(){
+    rf = 1;
+}, false);
+rff.addEventListener("mousemove", function(e){
+    //rf = 1;
+	
+}, false);
+rff.addEventListener("mouseup", function(){
+	rf=-1;
+}, false);
+//https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+function findLeft(element) {
+  var rec = document.getElementById(element).getBoundingClientRect();
+  return rec.left + window.scrollX;
+}
+/*//http://www.nerdparadise.com/programming/javascriptmouseposition
+function findViewCoords(mouseEvent)
+{
+	var xpos;
+	var ypos;
+	if (mouseEvent){
+		return xpos = mouseEvent.pageX - document.body.scrollLeft;
+	}
+}*/
+
+
+
 
 window.addEventListener("keypress", KP);
 function KP(e) {
