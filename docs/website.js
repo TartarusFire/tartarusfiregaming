@@ -4,8 +4,8 @@ var cFrame = document.getElementById('contentFrame');
 var fFrame = document.getElementById('float');
 
 var mainPages = ["AI","Games","Tools","Tests"];
-var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer","FramerWare Protype","Canvas Animation"]/*,["EmbededStreamer","EmbeddedEmbed"]*/];
-var lnkPages = [["desktop-ponies.html"],["pony-sim-city.html"],["video-file-streamer.html","framerware-protype.html","canvas-animation.html"],["embededstreamer.html","EmbeddedEmbed"]];
+var subPages = [["Desktop Ponies"],["Pony Sim City"],["Video File Streamer","FramerWare Protype","Canvas Animation"],["TumblrAPI"]/*,["EmbededStreamer","EmbeddedEmbed"]*/];
+var lnkPages = [["desktop-ponies.html"],["pony-sim-city.html"],["video-file-streamer.html","framerware-protype.html","canvas-animation.html"]/*,["embededstreamer.html","EmbeddedEmbed"]*/];
 addToNavigation(mainPages);
 
 var _Spgs = 0;
