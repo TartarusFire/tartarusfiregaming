@@ -80,6 +80,10 @@ Your browser doesn't support HTML5 video tag.
 </div>
 </div>
 
+<div id="gen">
+<p>Direct File Link <input type="text" size="35" onclick="this.value='';" id="tream"/><input type="button" value="Start Stream" onclick="startStreamDownload()"/></p>
+</div>
+
 <script type="text/javascript">
 var vW = 640;
 var video = document.getElementById('video');
@@ -87,6 +91,22 @@ function startStreamDownload(){
 video.src=document.getElementById('tream').value;
 document.getElementById('vsrc').value=video.src;
 }
+
+var passedURL = ""+window.location.href;
+if(passedURL!=null&&passedURL!='undefined'){
+	var data = null
+	if(passedURL.includes("url=")){
+		data = passedURL.substring(passedURL.indexOf("url=")+4,passedURL.length);
+	}else if(passedURL.includes("html?")){
+		data = passedURL.substring(passedURL.indexOf("html?")+5,passedURL.length);
+	}
+	console.log("Preset: "+data);
+	if(data!=null&&data!='undefined'){
+		document.getElementById('tream').value = data;
+		startStreamDownload();
+	}
+}
+
 
 function toggle(){
 if(video.paused)
@@ -211,10 +231,6 @@ function resetSeeking(){
 
 
 </script>
-
-<div id="gen">
-<p>Direct File Link <input type="text" size="35" onclick="this.value='';" id="tream"/><input type="button" value="Start Stream" onclick="startStreamDownload()"/></p>
-</div>
 
 </body>
 </html>
