@@ -100,6 +100,9 @@ if(passedURL!=null&&passedURL!='undefined'){
 	}else if(passedURL.includes("html?")){
 		data = passedURL.substring(passedURL.indexOf("html?")+5,passedURL.length);
 	}
+	if(data==null||data=='undefined'){
+		return;
+	}
 	if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
 		data=decodeURIComponent(data.replace(/\+/g,  " "));
 	}
