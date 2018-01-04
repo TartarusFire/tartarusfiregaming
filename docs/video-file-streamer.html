@@ -101,15 +101,14 @@ if(passedURL!=null&&passedURL!='undefined'){
 		data = passedURL.substring(passedURL.indexOf("html?")+5,passedURL.length);
 	}
 	if(data==null||data=='undefined'){
-		return;
-	}
-	if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
-		data=decodeURIComponent(data.replace(/\+/g,  " "));
-	}
-	console.log("Preset: "+data);
-	if(data!=null&&data!='undefined'){
-		document.getElementById('tream').value = data;
-		startStreamDownload();
+		if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
+			data=decodeURIComponent(data.replace(/\+/g,  " "));
+		}
+		console.log("Preset: "+data);
+		if(data!=null&&data!='undefined'){
+			document.getElementById('tream').value = data;
+			startStreamDownload();
+		}
 	}
 }
 
