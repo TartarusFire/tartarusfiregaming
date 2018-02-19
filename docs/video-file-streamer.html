@@ -8,13 +8,21 @@ html,body,div,video{
 padding:0;
 margin:0;
 }
+.nosel {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 </style>
 </head>
 <body class="transparent">
 
 <div id="vid" width="640" height="360"><!--https://docs.google.com/uc?id=0B-UZHbKERL_cNnhFRkJSN2I3NTg-->
 <video id="video" width="640" height="360" fullscreen autoplay toggle controls preload="metadata" poster="https://docs.google.com/uc?id=0B-UZHbKERL_cZXh0Wlk3dk9jemM" allowfullscreen="true">
-
 Your browser doesn't support HTML5 video tag.
 </video>
 <div id="resize" style="left:640px;height:360px;"></div>
@@ -80,8 +88,56 @@ Your browser doesn't support HTML5 video tag.
 </div>
 </div>
 
+<style>
+#speeds{
+	height: 20px;
+	position: relative;
+	width: 640px;
+	display: block;
+}
+#speedbg {
+background: #ffcc00;
+  display: block;
+  height: 20px;
+  /*background-color: #ffcc00;*/
+  width: 0;
+}
+#curspeed {
+  display: block;
+  height: 20px;
+  margin-top: -20px;
+  background-color: rgba(0,200,0,1);
+  width: 320px;
+}
+
+#normalspeed {
+position: inline;
+margin-top: -20px;
+  display: block;
+  margin-left:315px;
+  height: 100%;
+  background-color: rgba(255,0,0,.5);
+  width: 10px;
+}
+
+#speedn{
+position: inline;
+margin-top: -20px;
+  display: block;
+  height: 100%;
+  width: 10px;
+}
+
+</style>
+<div id="speeds">
+<span id="speedbg"></span>
+<span id="curspeed"></span>
+<span id="normalspeed"></span>
+<span id="speedn" class="nosel">Speed:&nbsp;1.0</span>
+</div>
+
 <div id="gen">
-<p>Direct File Link <input type="text" size="35" onclick="this.value='';" id="tream"/><input type="button" value="Start Stream" onclick="startStreamDownload()"/></p>
+<p class="nosel">Direct File Link <input type="text" size="35" onclick="this.value='';" id="tream"/><input type="button" value="Start Stream" onclick="startStreamDownload()"/></p>
 </div>
 
 <script type="text/javascript">
@@ -100,6 +156,7 @@ if(passedURL!=null&&passedURL!='undefined'){
 	}else if(passedURL.includes("html?")){
 		data = passedURL.substring(passedURL.indexOf("html?")+5,passedURL.length);
 	}
+	//https://meyerweb.com/eric/tools/dencoder/
 	if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
 		data=decodeURIComponent(data.replace(/\+/g,  " "));
 	}
@@ -124,16 +181,53 @@ toggle();
 }
 
 
+//https://stackoverflow.com/questions/6042202/how-to-distinguish-mouse-click-and-drag
+var sff = document.getElementById("speeds");
+var curs = document.getElementById("curspeed");
+var cursn = document.getElementById("speedn");
+sff.addEventListener("mousedown", function(){
+    rf = 2;
+}, false);
+sff.addEventListener("mouseup", function(){
+	rf=-1;
+}, false);
+
+
 document.addEventListener("mousemove", function(e){
 //rf = 0;
-if(rf==1){
+	if(rf==1){
         video.width=(video.getBoundingClientRect().left+(e.pageX - document.body.scrollLeft));
 		video.height=Math.ceil(video.width/16.0*9.0);
 		//console.log(video.getBoundingClientRect().left);
 		rff.style.left=video.width+"px";
 		rff.style.height=video.height+"px";
 		//console.log(video.getBoundingClientRect().left + window.scrollX);
-    }
+    }else if(rf==2){
+		//https://stackoverflow.com/questions/3027707/how-to-change-the-playing-speed-of-videos-in-html5
+		var w =(sff.getBoundingClientRect().left+(e.pageX - document.body.scrollLeft));//pure px
+		w=(~~(w/16))*16+16;
+		if(w>704||w==704){
+			w=704;
+			curs.style.background="rgba(0,200,0,0)";
+			curs.style.backgroundImage="url('https://discordapp.com/assets/f91ea6469f14105cd066e706c9862fa0.svg')";
+			//
+		}else{
+			//curs.style.backgroundImage="none";
+			curs.style.background="rgba(0,200,0,1)";
+		}
+		if(w<0){
+			w=0;
+		}
+		if(w>640){
+			video.playbackRate= (6-(~~((704-w)/16)));//at most 
+			cursn.textContent = "Speed:\u00A0"+(6-(~~((704-w)/16)));
+		}else{
+			video.playbackRate= (320-(320-w))/320;
+			cursn.textContent = "Speed:\u00A0"+(320-(320-w))/320;
+		}
+		curs.style.width=w+"px";
+		
+	}
 }, false);
 document.addEventListener("mouseup", function(e){
 rf = 0;
