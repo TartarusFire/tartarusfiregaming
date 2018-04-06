@@ -8,6 +8,7 @@ html,body,div,video{
 padding:0;
 margin:0;
 }
+/*https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting*/
 .nosel {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -148,15 +149,7 @@ video.src=document.getElementById('tream').value;
 document.getElementById('vsrc').value=video.src;
 }
 
-var passedURL = ""+window.location.href;
-if(passedURL!=null&&passedURL!='undefined'){
-	var data = null
-	if(passedURL.includes("url=")){
-		data = passedURL.substring(passedURL.indexOf("url=")+4,passedURL.length);
-	}else if(passedURL.includes("html?")){
-		data = passedURL.substring(passedURL.indexOf("html?")+5,passedURL.length);
-	}
-	//https://meyerweb.com/eric/tools/dencoder/
+function detectAndPlayPreload(data){
 	if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
 		data=decodeURIComponent(data.replace(/\+/g,  " "));
 	}
@@ -164,6 +157,51 @@ if(passedURL!=null&&passedURL!='undefined'){
 	if(data!=null&&data!='undefined'){
 		document.getElementById('tream').value = data;
 		startStreamDownload();
+	}
+}
+
+var passedURL = ""+window.location.href;
+if(passedURL!=null&&passedURL!='undefined'&&passedURL.includes("?")){
+	var cURL = passedURL.substring(passedURL.indexOf("?")+1,passedURL.length);
+	
+	if(cURL.length>0){
+		var data = null;
+		data = cURL.split("&");
+		for(var i = 0; i < data.length; i++){
+			if(!data[i].includes("=")){
+				detectAndPlayPreload(data[i]);
+			}else{
+				var tmp = data[i].substring(data[i].indexOf("=")+1,data[i].length);
+				switch(data[i].substring(0,data[i].indexOf("="))){
+					case("url"):
+						detectAndPlayPreload(tmp);
+					break;
+					case("vol"):
+						var num = parseInt(tmp, 10);
+						video.volume=num/100;
+					break;
+					case("gfx"):
+					//nothing yet, added filters later
+					break;
+				}
+			}
+		}
+		/*
+		if(passedURL.includes("url=")){
+			data = passedURL.substring(passedURL.indexOf("url=")+4,passedURL.length);
+		}else if(passedURL.includes("html?")){
+			data = passedURL.substring(passedURL.indexOf("html?")+5,passedURL.length);
+		}
+		//https://meyerweb.com/eric/tools/dencoder/
+		if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
+			data=decodeURIComponent(data.replace(/\+/g,  " "));
+		}
+		console.log("Preset: "+data);
+		if(data!=null&&data!='undefined'){
+			document.getElementById('tream').value = data;
+			startStreamDownload();
+		}*/
+	
 	}
 }
 
