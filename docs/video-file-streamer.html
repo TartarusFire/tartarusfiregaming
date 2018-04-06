@@ -8,7 +8,7 @@ html,body,div,video{
 padding:0;
 margin:0;
 }
-/*https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting*/
+
 .nosel {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -149,7 +149,6 @@ video.src=document.getElementById('tream').value;
 document.getElementById('vsrc').value=video.src;
 }
 
-function detectAndPlayPreload(data){
 	if(data.includes("%3A%2F")){//assume URI due to :/ convetion -- any prefix convetion at beinngin -- data URL = data:; -- not :/
 		data=decodeURIComponent(data.replace(/\+/g,  " "));
 	}
